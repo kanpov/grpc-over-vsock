@@ -1,0 +1,25 @@
+[package]
+name = "grpc-over-vsock"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "grpc-server"
+path = "src/server.rs"
+
+[[bin]]
+name = "grpc-client"
+path = "src/client.rs"
+
+[dependencies]
+hyper-util = { version = "0.1.8", features = ["tokio"] }
+pin-project-lite = "0.2.14"
+prost = "0.13.2"
+tokio = { version = "1.40.0", features = ["rt-multi-thread", "macros"] }
+tokio-stream = "0.1.16"
+tokio-vsock = { version = "0.5.0", features = ["tonic-conn"] }
+tonic = "0.12.2"
+tower = { version = "0.5.1", features = ["util"] }
+
+[build-dependencies]
+tonic-build = "0.12.2"
