@@ -12,8 +12,7 @@ pub mod hello_world {
 
 #[tokio::main]
 async fn main() {
-    let endpoint = Endpoint::try_from("http://[::1]:8000")
-        .unwrap()
+    let endpoint = Endpoint::from_static("http://localhost")
         .connect_with_connector(tower::service_fn(|_: Uri| async {
             Ok::<_, std::io::Error>(TokioIo::new(
                 VsockStream::connect(VsockAddr::new(1, 8000)).await?,
